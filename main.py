@@ -76,5 +76,4 @@ if __name__ == '__main__':
     data = np.asarray([(i, 8) for i in range(-10, 5)] + [(i, -2) for i in range(5, 20)])
     opt = FuncOptimizer(data)
     print(opt.a, opt.b, opt.c)
-    print(np.sort(opt.A[:, 0]), opt.loss)
     opt.plot()
