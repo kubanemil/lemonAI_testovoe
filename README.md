@@ -5,11 +5,11 @@
 ### Запуск с помощью DOCKER
 1. Сначала загрузите проект из Хаба:
 ```shell
-docker pull kubanemil/lemonAI_testovoe
+docker pull kubanemil/lemonai_testovoe
 ```
 2. Затем запустите контейнер:
 ```shell
-docker run --name lemon_container -p 0.0.0.0:80:80 lemonAI_testovoe
+docker run --name lemon_container -p 0.0.0.0:80:80 kubanemil/lemonai_testovoe
 ```
 3. Документация API в: http://127.0.0.1/
 

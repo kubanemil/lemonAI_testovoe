@@ -1,6 +1,8 @@
+import pytest
 import numpy as np
 from main import FuncOptimizer
-import pytest
+import warnings
+
 
 
 @pytest.fixture
@@ -10,6 +12,7 @@ def A():
 
 @pytest.fixture
 def optimizer(A):
+    warnings.filterwarnings('ignore')
     return FuncOptimizer(A)
 
 
