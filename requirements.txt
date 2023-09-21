@@ -1,9 +1,7 @@
-matplotlib
-jupyter
 numpy
-pytest
-
 fastapi
+matplotlib
 uvicorn
 httpx
+pytest
 python-multipart
