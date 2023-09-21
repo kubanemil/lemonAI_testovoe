@@ -4,6 +4,8 @@ import warnings
 
 warnings.filterwarnings('ignore')
 np.random.seed(10)
+
+
 class FuncOptimizer:
     def __init__(self, A):
         self.A = A
@@ -13,15 +15,23 @@ class FuncOptimizer:
         self.loss = []
         self.find_best_abc()
 
-    def func_y(self):
+    def F(self):
+        """
+        Кусочно-постоянная функция F(x)
+        """
         return np.where(self.A[:, 0] < self.c, self.a, self.b)
 
     def std(self):
-        func_y = self.func_y()
+        """Среднеквадратическое отклонение функции от точек из A"""
+        func_y = self.F()
         mse = np.mean(np.power((self.A[:, 1] - func_y), 2))
         return np.sqrt(mse)
 
     def find_best_abc(self):
+        """
+        Находит оптимальные значения для a, b, c
+        """
+
         abc = []
         for x in self.A[:, 0]:
             self.c = x
@@ -35,14 +45,19 @@ class FuncOptimizer:
         min_idx = self.loss.index(min(self.loss))
         self.a, self.b, self.c = abc[min_idx]
 
-    def plot(self):
+    def plot(self, show=True):
+        """
+        Делает 2 графика:
+        1. Распределение массива А на плоскости
+        2. Зависимость среднеквадратического отклонение от значения С
+        """
         plt.figure(figsize=(8, 8))
 
         plt.subplot(2, 1, 1)
         plt.title('Distribution of A')
         plt.ylabel("Y-values")
         plt.xlabel("X-values")
-        xs, ys, func_ys = self.A[:, 0], self.A[:, 1], self.func_y()
+        xs, ys, func_ys = self.A[:, 0], self.A[:, 1], self.F()
         plt.scatter(xs, ys, label='Y')
         plt.scatter(xs, func_ys, label='func(x)')
         plt.legend()
@@ -54,7 +69,7 @@ class FuncOptimizer:
         plt.scatter(self.A[:, 0], self.loss, marker='o')
 
         plt.tight_layout()
-        plt.show()
+        if show: plt.show()
 
 
 if __name__ == '__main__':
