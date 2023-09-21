@@ -2,3 +2,8 @@ matplotlib
 jupyter
 numpy
 pytest
+
+fastapi
+uvicorn
+httpx
+python-multipart
